@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Herrera Tech Academy</title>
+
+<style>
+body{margin:0;font-family:Arial;background:#0b1d3a;color:white}
+
+/* HEADER */
+header{
+background:#07142b;
+padding:15px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:15px
+}
+
+header img{width:60px}
+
+/* NAV */
+nav{
+background:#07142b;
+padding:10px;
+text-align:center
+}
+
+nav a{
+color:white;
+margin:0 15px;
+text-decoration:none
+}
+
+/* HERO */
+.hero{
+height:300px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:linear-gradient(to right,#0b1d3a,#123a7a);
+animation:fadeIn 1.5s
+}
+
+/* CATEGORÍAS */
+.row{padding:20px}
+.slider{
+display:flex;
+overflow-x:auto;
+padding:10px;
+}
+
+/* TARJETAS */
+.card{
+min-width:250px;
+background:#142b57;
+margin:10px;
+border-radius:10px;
+overflow:hidden;
+position:relative;
+transition:0.4s
+}
+
+.card img{
+width:100%;
+height:150px;
+object-fit:cover;
+transition:0.4s
+}
+
+/* PREVIEW VIDEO */
+.preview{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:150px;
+display:none;
+}
+
+.card:hover .preview{
+display:block;
+}
+
+.card:hover img{
+opacity:0;
+}
+
+.card:hover{
+transform:scale(1.1);
+z-index:2
+}
+
+/* CONTENIDO */
+.card-content{padding:15px}
+
+.btn{
+background:#1e90ff;
+border:none;
+padding:8px;
+margin-top:5px;
+color:white;
+cursor:pointer;
+width:100%
+}
+
+/* VIDEO PLAYER */
+iframe{
+width:80%;
+height:400px
+}
+
+/* WHATSAPP */
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px;
+border-radius:50%;
+text-decoration:none
+}
+
+/* ANIMACIÓN */
+@keyframes fadeIn{
+from{opacity:0}
+to{opacity:1}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<img src="logo.png">
+<div>
+<h1>Herrera Tech Academy</h1>
+<p style="color:#1e90ff">Formando profesionales en tecnología</p>
+</div>
+</header>
+
+<nav>
+<a href="#">Inicio</a>
+<a href="#">Cursos</a>
+<a href="#" onclick="login()">Login</a>
+</nav>
+
+<section class="hero">
+<h1>Aprende Tecnología Profesional</h1>
+<p>Plataforma tipo Netflix</p>
+</section>
+
+<!-- POPULARES -->
+<div class="row">
+<h2>Cursos Populares</h2>
+<div class="slider">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
+<iframe class="preview" src="https://www.youtube.com/embed/O5nskjZ_GoI?autoplay=1&mute=1"></iframe>
+<div class="card-content">
+<h3>Sistemas</h3>
+<button class="btn" onclick="comprar('sistemas')">Comprar</button>
+<button class="btn" onclick="ver('sistemas')">Ver</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c">
+<iframe class="preview" src="https://www.youtube.com/embed/pQN-pnXPaVg?autoplay=1&mute=1"></iframe>
+<div class="card-content">
+<h3>Software</h3>
+<button class="btn" onclick="comprar('software')">Comprar</button>
+<button class="btn" onclick="ver('software')">Ver</button>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- CIBERSEGURIDAD -->
+<div class="row">
+<h2>Ciberseguridad</h2>
+<div class="slider">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b">
+<iframe class="preview" src="https://www.youtube.com/embed/inWWhr5tnEA?autoplay=1&mute=1"></iframe>
+<div class="card-content">
+<h3>Ciberseguridad</h3>
+<button class="btn" onclick="comprar('ciber')">Comprar</button>
+<button class="btn" onclick="ver('ciber')">Ver</button>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- REDES -->
+<div class="row">
+<h2>Redes</h2>
+<div class="slider">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
+<iframe class="preview" src="https://www.youtube.com/embed/qiQR5rTSshw?autoplay=1&mute=1"></iframe>
+<div class="card-content">
+<h3>Redes</h3>
+<button class="btn" onclick="comprar('redes')">Comprar</button>
+<button class="btn" onclick="ver('redes')">Ver</button>
+</div>
+</div>
+
+</div>
+</div>
+
+<div id="video" style="text-align:center"></div>
+
+<!-- WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/18499251500" target="_blank">💬</a>
+
+<script>
+let usuario={cursos:[]};
+
+function login(){
+alert("Login listo para Firebase en siguiente fase");
+}
+
+function comprar(curso){
+usuario.cursos.push(curso);
+alert("Curso comprado (simulación lista para Stripe)");
+}
+
+function ver(curso){
+if(!usuario.cursos.includes(curso)){
+alert("Debes comprar el curso");
+return;
+}
+
+let v=document.getElementById('video');
+
+const videos={
+sistemas:"O5nskjZ_GoI",
+software:"pQN-pnXPaVg",
+ciber:"inWWhr5tnEA",
+redes:"qiQR5rTSshw"
+};
+
+v.innerHTML=`<h2>${curso}</h2>
+<iframe src="https://www.youtube.com/embed/${videos[curso]}"></iframe>`;
+}
+</script>
+
+</body>
+</html>
